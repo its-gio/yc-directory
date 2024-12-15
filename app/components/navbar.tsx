@@ -5,13 +5,13 @@ const Navbar = async () => {
   const session = await auth();
 
   return (
-    <header className="px-5 py-3 bg-white shadow-sm font-work-sans">
-      <nav className="flex justify-between items-center">
-        <Link href="/" className="text-black">
-          Home
+    <header className="px-5 py-3 bg-slate-800 shadow-sm font-work-sans">
+      <nav className="flex justify-between items-center text-gray-300">
+        <Link href="/">
+          <img src="/logo.png" alt="" />
         </Link>
 
-        <div className="flex item-center gap-5 text-black">
+        <div className="flex item-center gap-5">
           {session && session?.user ? (
             <>
               <Link href="/startup/create">
@@ -22,7 +22,7 @@ const Navbar = async () => {
                 action={async () => {
                   "use server";
 
-                  await signOut();
+                  await signOut({ redirectTo: "/" });
                 }}
               >
                 <button type="submit">Logout</button>
