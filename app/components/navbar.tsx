@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { auth, signIn, signOut } from "@/auth";
+import Image from "next/image";
 
 const Navbar = async () => {
   const session = await auth();
@@ -8,7 +9,7 @@ const Navbar = async () => {
     <header className="px-5 py-3 bg-slate-800 shadow-sm font-work-sans">
       <nav className="flex justify-between items-center text-gray-300">
         <Link href="/">
-          <img src="/logo.png" alt="" />
+          <Image src="/logo.png" alt="Stock YC Logo" width={144} height={30} />
         </Link>
 
         <div className="flex item-center gap-5">
