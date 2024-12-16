@@ -8,3 +8,4 @@ This uses:
 - Tailwind
 - Auth.js (github)
 - TypeScript
+- Shadcn (Component Dashboard Library)
