@@ -11,6 +11,7 @@ type StartCardType = {
   views: number;
   author: {
     _id: number;
+    name: string;
   };
 };
 
@@ -23,10 +24,11 @@ export default async function Home({
 
   const posts = [
     {
-      _createdAt: "Yesterday",
+      _createdAt: new Date().toISOString(),
       views: 20,
       author: {
         _id: 1,
+        name: "John Doe",
       },
       _id: 1,
       title: "Startup 1",
