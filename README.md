@@ -9,3 +9,4 @@ This uses:
 - Auth.js (github)
 - TypeScript
 - Shadcn (Component Dashboard Library)
+- Sanity (Headless CMS)
