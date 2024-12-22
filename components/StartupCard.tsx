@@ -3,25 +3,12 @@ import { EyeIcon } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { Button } from "./ui/button";
-
-type StartCardType = {
-  _id: number;
-  title: string;
-  description: string;
-  category: string;
-  image: string;
-  _createdAt: string;
-  views: number;
-  author: {
-    _id: number;
-    name: string;
-  };
-};
+import { StartUpCardType } from "@/app/(root)/page";
 
 const StartupCard = ({
   post: { _createdAt, views, author, title, category, description, image, _id },
 }: {
-  post: StartCardType;
+  post: StartUpCardType;
 }) => {
   return (
     <li className="startup-card group">
@@ -61,7 +48,7 @@ const StartupCard = ({
         <p className="startup-card_desc ">{description}</p>
 
         <Image
-          src={image}
+          src={image || "https://placeholder.co/400x400"}
           className="startup-card_image"
           alt="placeholder"
           crossOrigin="anonymous"
@@ -71,7 +58,7 @@ const StartupCard = ({
       </Link>
 
       <div className="flex-between gap-3 mt-5">
-        <Link href={`/?query=${category.toLowerCase()}`}>
+        <Link href={`/?query=${category?.toLowerCase()}`}>
           <p className="text-16-mediumn">{category}</p>
         </Link>
 
