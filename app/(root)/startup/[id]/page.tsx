@@ -4,10 +4,12 @@ import { client } from "@/sanity/lib/client";
 import { STARTUP_BY_ID_QUERY } from "@/sanity/lib/queries";
 import Link from "next/link";
 import Image from "next/image";
-
 import { notFound } from "next/navigation";
-import React from "react";
+import React, { Suspense } from "react";
 import { CircleUserRoundIcon } from "lucide-react";
+import markdownit from "markdown-it";
+import { Skeleton } from "@/components/ui/skeleton";
+import View from "@/components/View";
 
 const Startup = async ({ params }: { params: Promise<{ id: string }> }) => {
   const id = (await params).id;
@@ -16,6 +18,8 @@ const Startup = async ({ params }: { params: Promise<{ id: string }> }) => {
   })) as PostType;
 
   if (!post) return notFound();
+
+  const parsedPitch = markdownit().render(post?.pitch || "");
 
   return (
     <>
@@ -61,8 +65,28 @@ const Startup = async ({ params }: { params: Promise<{ id: string }> }) => {
                 </p>
               </div>
             </Link>
+
+            <p className="category-tag">{post.category}</p>
           </div>
+
+          <h3 className="tex-30-bold">Pitch Details:</h3>
+          {parsedPitch ? (
+            <article
+              className="prose max-w-4xl font-work-sans break-all"
+              dangerouslySetInnerHTML={{ __html: parsedPitch }}
+            />
+          ) : (
+            <p className="no-result">In the seed stage</p>
+          )}
         </div>
+
+        <hr className="divider" />
+
+        {/* TODO: Editor selected startups */}
+
+        <Suspense fallback={<Skeleton className="view_skeleton" />}>
+          <View id={id} />
+        </Suspense>
       </section>
     </>
   );
