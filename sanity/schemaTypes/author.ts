@@ -14,10 +14,12 @@ export const author = defineType({
     defineField({
       name: "name",
       type: "string",
+      validation: (Rule) => Rule.required().error("Name is required"),
     }),
     defineField({
       name: "username",
       type: "string",
+      validation: (Rule) => Rule.required().error("Username is required"),
     }),
     defineField({
       name: "email",
@@ -26,6 +28,7 @@ export const author = defineType({
     defineField({
       name: "image",
       type: "url",
+      validation: (Rule) => Rule.required().error("Image is required"),
     }),
     defineField({
       name: "bio",

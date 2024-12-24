@@ -3,12 +3,12 @@ import { EyeIcon } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { Button } from "./ui/button";
-import { StartUpCardType } from "@/app/(root)/page";
+import { PostType } from "@/lib/types";
 
 const StartupCard = ({
   post: { _createdAt, views, author, title, category, description, image, _id },
 }: {
-  post: StartUpCardType;
+  post: PostType;
 }) => {
   return (
     <li className="startup-card group">
