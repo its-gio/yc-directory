@@ -1,5 +1,5 @@
 import { formatDate } from "@/lib/utils";
-import { EyeIcon } from "lucide-react";
+import { CircleUserRoundIcon, EyeIcon } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { Button } from "./ui/button";
@@ -33,28 +33,33 @@ const StartupCard = ({
         </div>
 
         <Link href={`/user/${author?._id}`}>
-          <Image
-            src="https://placeholder.co/48x48"
-            crossOrigin="anonymous"
-            alt="Puppy place holder!"
-            className="rounded-full"
-            width={48}
-            height={48}
-          />
+          {author?.image ? (
+            <Image
+              src={author?.image}
+              alt={`${author?.name} profile picture`}
+              className="rounded-full"
+              width={48}
+              height={48}
+            />
+          ) : (
+            <CircleUserRoundIcon width={48} height={48} />
+          )}
         </Link>
       </div>
 
       <Link href={`/startup/${_id}`}>
         <p className="startup-card_desc ">{description}</p>
 
-        <Image
-          src={image || "https://placeholder.co/400x400"}
-          className="startup-card_image"
-          alt="placeholder"
-          crossOrigin="anonymous"
-          width={"400"}
-          height={"400"}
-        />
+        {image && (
+          <Image
+            src={image}
+            className="startup-card_image"
+            alt="placeholder"
+            crossOrigin="anonymous"
+            width={"400"}
+            height={"400"}
+          />
+        )}
       </Link>
 
       <div className="flex-between gap-3 mt-5">
