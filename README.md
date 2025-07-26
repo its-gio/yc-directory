@@ -20,3 +20,4 @@ Needs _sanity-typegen.json_
 - TypeScript
 - Shadcn (Component Dashboard Library)
 - Sanity (Headless CMS)
+- Zod
