@@ -1,4 +1,5 @@
 import Navbar from "@/components/Navbar";
+import { Toaster } from "@/components/ui/toaster";
 
 export default function RootLayout({
   children,
@@ -9,6 +10,8 @@ export default function RootLayout({
     <main className="font-work-sans">
       <Navbar />
       {children}
+
+      <Toaster />
     </main>
   );
 }
