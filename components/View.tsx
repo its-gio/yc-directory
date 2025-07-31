@@ -1,4 +1,3 @@
-import React from "react";
 import Ping from "./Ping";
 import { client } from "@/sanity/lib/client";
 import { STARTUP_VIEWS_QUERY } from "@/sanity/lib/queries";
@@ -24,7 +23,9 @@ const View = async ({ id }: { id: string }) => {
       </div>
 
       <p className="view-text">
-        <span className="font-black">Views: {totalViews}</span>
+        <span className="font-black">
+          {totalViews ? `Views: ${totalViews}` : "You're the first View!"}
+        </span>
       </p>
     </div>
   );
