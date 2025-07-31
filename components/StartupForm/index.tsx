@@ -5,10 +5,11 @@ import { Input } from "../ui/input";
 import { Textarea } from "../ui/textarea";
 import dynamic from "next/dynamic";
 import { Button } from "../ui/button";
-import { formSchema } from "@/validation";
+import { formSchema } from "@/lib/validation";
 import z from "zod";
 import { useToast } from "@/hooks/use-toast";
-// import { useRouter } from "next/navigation";
+import { useRouter } from "next/navigation";
+import { createPitch } from "@/lib/actions";
 
 const MDEditor = dynamic(() => import("@uiw/react-md-editor"), { ssr: false });
 
@@ -16,7 +17,7 @@ const StartupForm = () => {
   const [error, setErrors] = useState<Record<string, string>>({});
   const [pitch, setPitch] = useState<string>("");
   const { toast } = useToast();
-  // const router = useRouter();
+  const router = useRouter();
   const handleFormSubmit = async (prevState: any, formData: FormData) => {
     try {
       const formValues = {
@@ -29,18 +30,18 @@ const StartupForm = () => {
 
       await formSchema.parseAsync(formValues);
 
-      console.log(formValues);
+      const result = await createPitch(prevState, formData, pitch);
 
-      // if (result.status === "SUCCESS") {
-      //   toast({
-      //     title: "Success!",
-      //     description: "Your Startup Pitch Has Been Created!",
-      //   });
+      if (result.status === "SUCCESS") {
+        toast({
+          title: "Success!",
+          description: "Your Startup Pitch Has Been Created!",
+        });
 
-      //   router.push(`/startup/${result.id}`);
-      // }
+        router.push(`/startup/${result._id}`);
+      }
 
-      // return result;
+      return result;
     } catch (error) {
       if (error instanceof z.ZodError) {
         const fieldErrors = error.flatten().fieldErrors;
