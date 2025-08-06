@@ -23,8 +23,6 @@ export const createPitch = async (
 
   const slug = slugify(title as string, { lower: true, strict: true });
 
-  console.log({ slug });
-
   try {
     const startup = {
       title,
