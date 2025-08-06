@@ -72,6 +72,7 @@ const StartupForm = () => {
       };
     }
   };
+  // TODO: Fix form clear on errors
   const [state, formAction, isPending] = useActionState(handleFormSubmit, {
     error: "",
     status: "INITIAL",
