@@ -21,3 +21,4 @@ Needs _sanity-typegen.json_
 - Shadcn (Component Dashboard Library)
 - Sanity (Headless CMS)
 - Zod
+- Sentry (Error detection)
