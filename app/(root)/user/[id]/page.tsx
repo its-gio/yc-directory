@@ -1,4 +1,5 @@
 import { auth } from "@/auth";
+import { StartupCardSkeleton } from "@/components/StartupCard";
 import UserStartups from "@/components/UserStartups";
 import { SessionType } from "@/lib/types";
 import { client } from "@/sanity/lib/client";
@@ -47,8 +48,8 @@ const Page = async ({ params }: { params: Promise<{ id: string }> }) => {
           <p className="text-30-bold">
             {session?.id === id ? "Your" : "All"} Posts
           </p>
-          <ul className="cart_grid-sm">
-            <Suspense fallback={<p>Loading ...</p>}>
+          <ul className="card_grid-sm">
+            <Suspense fallback={<StartupCardSkeleton />}>
               <UserStartups id={id} />
             </Suspense>
           </ul>

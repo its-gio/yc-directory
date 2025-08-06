@@ -1,9 +1,10 @@
-import { formatDate } from "@/lib/utils";
+import { cn, formatDate } from "@/lib/utils";
 import { CircleUserRoundIcon, EyeIcon } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { Button } from "./ui/button";
 import { StartupCardType } from "@/lib/types";
+import { Skeleton } from "./ui/skeleton";
 
 const StartupCard = ({
   startup: {
@@ -83,5 +84,15 @@ const StartupCard = ({
     </li>
   );
 };
+
+export const StartupCardSkeleton = () => (
+  <>
+    {[1, 2, 3, 4, 5].map((i: number) => (
+      <li key={cn("skeleton", i)}>
+        <Skeleton className="startup-card_skeleton" />
+      </li>
+    ))}
+  </>
+);
 
 export default StartupCard;
