@@ -3,12 +3,21 @@ import { CircleUserRoundIcon, EyeIcon } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { Button } from "./ui/button";
-import { PostType } from "@/lib/types";
+import { StartupCardType } from "@/lib/types";
 
 const StartupCard = ({
-  post: { _createdAt, views, author, title, category, description, image, _id },
+  startup: {
+    _createdAt,
+    views,
+    author,
+    title,
+    category,
+    description,
+    image,
+    _id,
+  },
 }: {
-  post: PostType;
+  startup: StartupCardType;
 }) => {
   return (
     <li className="startup-card group">

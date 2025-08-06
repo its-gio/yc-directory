@@ -1,10 +1,12 @@
 import { auth } from "@/auth";
+import UserStartups from "@/components/UserStartups";
 import { SessionType } from "@/lib/types";
 import { client } from "@/sanity/lib/client";
 import { AUTHOR_BY_ID_QUERY } from "@/sanity/lib/queries";
 import { Author } from "@/sanity/types";
 import Image from "next/image";
 import { notFound } from "next/navigation";
+import { Suspense } from "react";
 
 export const experimental_ppr = true;
 
@@ -45,7 +47,11 @@ const Page = async ({ params }: { params: Promise<{ id: string }> }) => {
           <p className="text-30-bold">
             {session?.id === id ? "Your" : "All"} Posts
           </p>
-          <ul className="cart_grid-sm"></ul>
+          <ul className="cart_grid-sm">
+            <Suspense fallback={<p>Loading ...</p>}>
+              <UserStartups id={id} />
+            </Suspense>
+          </ul>
         </div>
       </section>
     </>

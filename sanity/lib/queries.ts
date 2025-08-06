@@ -23,6 +23,27 @@ export const STARTUP_QUERY = defineQuery(
   }`,
 );
 
+export const STARTUP_BY_AUTHOR_QUERY = defineQuery(
+  `*[_type == "startup" && author._ref == $id] | order(_createdAt desc) {
+      _id,
+      title,
+      slug,
+      category,
+      image,
+      description,
+      views,
+      _createdAt,
+      author -> {
+        _id,
+        bio,
+        email,
+        name,
+        username,
+        image
+      }
+  }`,
+);
+
 export const STARTUP_BY_ID_QUERY = defineQuery(
   `*[_type == "startup" && _id == $id][0] {
       _id,
