@@ -37,7 +37,7 @@ const Navbar = async () => {
 
               <Link href={`/user/${session?.id}`}>
                 <span className="max-sm:hidden">{session?.user?.name}</span>
-                <Avatar className="size-10">
+                <Avatar className="size-10 sm:hidden">
                   <AvatarImage
                     src={session?.user?.image || ""}
                     alt={"Your image silly!"}

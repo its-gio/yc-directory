@@ -18,6 +18,7 @@ const StartupForm = () => {
   const [pitch, setPitch] = useState<string>("");
   const { toast } = useToast();
   const router = useRouter();
+
   const handleFormSubmit = async (prevState: any, formData: FormData) => {
     try {
       const formValues = {
@@ -72,6 +73,7 @@ const StartupForm = () => {
       };
     }
   };
+
   // TODO: Fix form clear on errors
   const [state, formAction, isPending] = useActionState(handleFormSubmit, {
     error: "",
